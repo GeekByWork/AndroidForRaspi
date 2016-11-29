@@ -15,11 +15,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.TextView;
 
-public class HttpGetDemo extends AsyncTask<TextView, Void, String> {
+public class HttpGetDemo extends AsyncTask<String, Void, String> {
     Context context;
-    TextView t;
     String result = "fail";
 
     HttpGetDemo(Context context){
@@ -27,15 +25,13 @@ public class HttpGetDemo extends AsyncTask<TextView, Void, String> {
     }
 
     @Override
-    protected String doInBackground(TextView... params) {
-        // TODO Auto-generated method stub
-        this.t = params[0];
-        return GetSomething();
+    protected String doInBackground(String... params) {
+        return GetSomething(params);
     }
 
-    final String GetSomething()
+    final String GetSomething(String[] params)
     {
-        String url = "http://www.google.com";
+        String url = params[0];
         BufferedReader inStream = null;
         try {
             HttpClient httpClient = new DefaultHttpClient();
@@ -55,7 +51,6 @@ public class HttpGetDemo extends AsyncTask<TextView, Void, String> {
 
             result = buffer.toString();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             if (inStream != null) {
@@ -72,6 +67,6 @@ public class HttpGetDemo extends AsyncTask<TextView, Void, String> {
     protected void onPostExecute(String page)
     {
         CommonUtilities.loginResponse = page;
-        context.startActivity(new Intent(context, MainActivity.class));
+        context.startActivity(new Intent(context, Dashboard.class));
     }
 }
