@@ -74,6 +74,23 @@
                 android:textStyle="bold"
                 android:onClick="btnClick" />
 
+            <TextView
+                android:id="@+id/tvRegisterLink"
+                android:layout_width="wrap_content"
+                android:text="New User? Click here to Register"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:onClick="registerClick"/>
+
+            <TextView
+                android:id="@+id/loginFailed"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:text="Login Failed. Please Retry."
+                android:textColor="#ff0000"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
